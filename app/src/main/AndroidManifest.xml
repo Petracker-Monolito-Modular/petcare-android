@@ -13,9 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petracker">
-        <activity
-            android:name=".feature_auth.ui.dfg"
-            android:exported="false" />
+
         <activity
             android:name=".feature_auth.ui.LoginActivity"
             android:exported="true">
