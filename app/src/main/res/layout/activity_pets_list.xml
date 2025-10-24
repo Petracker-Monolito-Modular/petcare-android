@@ -6,11 +6,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background_invertido"
     tools:context=".feature_pets.ui.PetsListActivity">
 
-  <ListView
-      android:layout_width="290dp"
-      android:layout_height="498dp"
-      tools:layout_editor_absoluteX="60dp"
-      tools:layout_editor_absoluteY="193dp" />
+    <ListView
+        android:id="@+id/listPets"
+        android:layout_width="377dp"
+        android:layout_height="444dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="271dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
