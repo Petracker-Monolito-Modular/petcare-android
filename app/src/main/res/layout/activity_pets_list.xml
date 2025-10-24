@@ -8,4 +8,9 @@
     android:layout_height="match_parent"
     tools:context=".feature_pets.ui.PetsListActivity">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  <ListView
+      android:layout_width="290dp"
+      android:layout_height="498dp"
+      tools:layout_editor_absoluteX="60dp"
+      tools:layout_editor_absoluteY="193dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
