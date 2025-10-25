@@ -11,4 +11,7 @@ class PetsRepository(private val api: PetsApi) {
     suspend fun create(body: PetCreate): Result<Pet> = try {
         Result.success(api.create(body))
     } catch (e: Exception) { Result.failure(e) }
+
+    suspend fun update(id: String, body: PetCreate) = runCatching { api.update(id, body) }
+    suspend fun delete(id: String) = runCatching { api.delete(id) }
 }

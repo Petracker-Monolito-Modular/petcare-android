@@ -1,7 +1,8 @@
 package com.example.petracker.feature_pets.ui
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -16,38 +17,78 @@ import com.example.petracker.feature_pets.data.PetsRepository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class PetsListActivity: ComponentActivity() {
+class PetsListActivity : ComponentActivity() {
     private lateinit var vm: PetsViewModel
     private lateinit var list: ListView
-    private lateinit var adapter: ArrayAdapter<String>
+    private lateinit var adapterPets: PetRowAdapter
+    private lateinit var repo: PetsRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pets_list)
 
         list = findViewById(R.id.listPets)
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, mutableListOf())
-        list.adapter = adapter
 
         val retrofit = RetrofitClient.create(TokenStore(this))
-        val repo = PetsRepository(retrofit.create(PetsApi::class.java))
+        repo = PetsRepository(retrofit.create(PetsApi::class.java))
         vm = PetsViewModel(repo)
+
+        adapterPets = PetRowAdapter(
+            this,
+            mutableListOf(),
+            onEdit = { pet ->
+                val i = Intent(this, PetEditActivity::class.java)
+                i.putExtra("pet", pet)
+                startActivity(i)
+            },
+            onDelete = { pet ->
+                confirmDelete(pet)    // 👈 usa el diálogo
+            }
+        )
+        list.adapter = adapterPets
 
         lifecycleScope.launch {
             vm.state.collectLatest { s ->
                 when (s) {
                     is UiState.Success -> render(s.data)
-                    is UiState.Error -> Toast.makeText(this@PetsListActivity, s.message, Toast.LENGTH_SHORT).show()
+                    is UiState.Error -> toast(s.message)
                     else -> Unit
                 }
             }
         }
         vm.load()
     }
-
     private fun render(items: List<Pet>) {
-        val rows = items.map { "${it.name} • ${it.species}${if (it.breed!=null) " (${it.breed})" else ""}" }
-        adapter.clear()
-        adapter.addAll(rows)
+        adapterPets.setData(items)
     }
+
+    // Recargar al volver de edición
+    override fun onResume() {
+        super.onResume()
+        vm.load()
+    }
+
+    private fun confirmDelete(pet: Pet) {
+        AlertDialog.Builder(this)
+            .setTitle("Eliminar")
+            .setMessage("¿Eliminar a ${pet.name}?")
+            .setPositiveButton("Sí") { _, _ -> deletePet(pet) }
+            .setNegativeButton("No", null)
+            .show()
+    }
+
+    private fun deletePet(pet: Pet) {
+        lifecycleScope.launch {
+            val r = repo.delete(pet.id)
+            r.onSuccess {
+                adapterPets.removeItem(pet)
+                toast("Eliminado")
+            }.onFailure {
+                toast("Error: ${it.message}")
+            }
+        }
+    }
+
+    private fun toast(msg: String) =
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }
