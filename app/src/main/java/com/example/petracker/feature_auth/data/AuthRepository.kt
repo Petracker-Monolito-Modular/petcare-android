@@ -13,4 +13,13 @@ class AuthRepository(
     } catch (e: Exception) {
         Result.failure(e)
     }
+
+
+    suspend fun registerAndLogin(name: String, email: String, password: String): Result<Unit> = try {
+        api.register(RegisterReq(email = email, password = password, name = name))
+        // si registro ok, intentar login
+        login(email, password)
+    } catch (e: Exception) {
+        Result.failure(e)
+    }
 }
