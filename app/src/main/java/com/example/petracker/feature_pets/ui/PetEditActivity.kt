@@ -14,6 +14,10 @@ import com.example.petracker.feature_pets.data.PetsApi
 import com.example.petracker.feature_pets.data.PetsRepository
 import kotlinx.coroutines.launch
 import java.util.*
+import com.google.android.material.appbar.MaterialToolbar
+import androidx.activity.addCallback
+import android.app.AlertDialog
+import android.widget.*
 
 class PetEditActivity : ComponentActivity() {
 
@@ -37,6 +41,18 @@ class PetEditActivity : ComponentActivity() {
         val etWeight = findViewById<EditText>(R.id.etWeight)
         val etBirth = findViewById<EditText>(R.id.etBirth)
         val btnSave = findViewById<Button>(R.id.btnSave)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar).apply {
+            title = "Editar mascota"
+            navigationIcon = null
+            setNavigationOnClickListener(null)
+        }
+
+        val btnCancel = findViewById<Button>(R.id.btnCancel)
+        btnCancel.setOnClickListener { handleCancel() }
+
+
+        onBackPressedDispatcher.addCallback(this) { handleCancel() }
+
 
         // 3) llenar spinners
         spSpecies.adapter = ArrayAdapter.createFromResource(
@@ -106,4 +122,40 @@ class PetEditActivity : ComponentActivity() {
     }
 
     private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    private fun handleCancel() {
+        if (hasUnsavedChanges()) {
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.discard_changes_title))
+                .setMessage(getString(R.string.discard_changes_msg))
+                .setPositiveButton(getString(R.string.yes)) { _, _ -> finish() }
+                .setNegativeButton(getString(R.string.no), null)
+                .show()
+        } else {
+            finish()
+        }
+    }
+
+    private fun hasUnsavedChanges(): Boolean {
+        // Campos actuales
+        val name = findViewById<EditText>(R.id.etName).text.toString().trim()
+        val species = findViewById<Spinner>(R.id.spSpecies).selectedItem.toString()
+        val sex = findViewById<Spinner>(R.id.spSex).selectedItem.toString()
+        val breed = findViewById<EditText>(R.id.etBreed).text.toString().ifBlank { null }
+        val weight = findViewById<EditText>(R.id.etWeight).text.toString().toDoubleOrNull()
+        val birth = findViewById<EditText>(R.id.etBirth).text.toString().ifBlank { null }
+
+        // Datos originales (de tu `pet` parcelable)
+        val p = pet  // asegúrate de tener `lateinit var pet: Pet` y de setearlo desde el intent
+
+        // Compara cada campo (cuidando nulls / tipos)
+        if (name != p.name) return true
+        if (species != p.species) return true
+        if (sex != p.sex) return true
+        if ((breed ?: "") != (p.breed ?: "")) return true
+        if (weight != p.weight_kg) return true
+        if ((birth ?: "") != (p.birth_date ?: "")) return true
+
+        return false
+    }
+
 }
