@@ -14,6 +14,7 @@ import com.example.petracker.core.storage.TokenStore
 import com.example.petracker.core.util.UiState
 import com.example.petracker.feature_auth.data.AuthApi
 import com.example.petracker.feature_auth.data.AuthRepository
+import com.example.petracker.feature_menu.ui.MenuActivity
 import com.example.petracker.feature_pets.ui.PetsListActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -45,7 +46,7 @@ class LoginActivity: ComponentActivity() {
             vm.state.collectLatest { s ->
                 when (s) {
                     is UiState.Success -> {
-                        startActivity(Intent(this@LoginActivity, PetsListActivity::class.java))
+                        startActivity(Intent(this@LoginActivity, MenuActivity::class.java))
                         finish()
                     }
                     is UiState.Error -> Toast.makeText(this@LoginActivity, s.message, Toast.LENGTH_SHORT).show()

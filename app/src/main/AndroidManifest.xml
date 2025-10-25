@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Petracker"
         android:usesCleartextTraffic="true">
+        <activity android:name=".feature_menu.ui.MenuActivity" />
         <activity android:name=".feature_auth.ui.RegisterActivity" />
+        <activity android:name=".feature_pets.ui.PetCreateActivity" />
+        <activity android:name=".feature_pets.ui.PetEditActivity" />
         <activity
             android:name=".feature_auth.ui.LoginActivity"
             android:exported="true">

@@ -13,6 +13,7 @@ import com.example.petracker.core.storage.TokenStore
 import com.example.petracker.core.util.UiState
 import com.example.petracker.feature_auth.data.AuthApi
 import com.example.petracker.feature_auth.data.AuthRepository
+import com.example.petracker.feature_menu.ui.MenuActivity
 import com.example.petracker.feature_pets.ui.PetsListActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -50,7 +51,7 @@ class RegisterActivity: ComponentActivity() {
                 when (s) {
                     is UiState.Success -> {
                         Toast.makeText(this@RegisterActivity, "Cuenta creada", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@RegisterActivity, PetsListActivity::class.java))
+                        startActivity(Intent(this@RegisterActivity, MenuActivity::class.java))
                         finish()
                     }
                     is UiState.Error -> {
