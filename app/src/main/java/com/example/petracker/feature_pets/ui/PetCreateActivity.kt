@@ -13,6 +13,9 @@ import com.example.petracker.feature_pets.data.PetsApi
 import com.example.petracker.feature_pets.data.PetsRepository
 import kotlinx.coroutines.launch
 import java.util.*
+import androidx.activity.addCallback
+import android.app.AlertDialog
+import android.widget.*
 
 class PetCreateActivity: ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +29,9 @@ class PetCreateActivity: ComponentActivity() {
         val etWeight = findViewById<EditText>(R.id.etWeight)
         val etBirth = findViewById<EditText>(R.id.etBirth)
         val btnSave = findViewById<Button>(R.id.btnSave)
-
+        val btnCancel = findViewById<Button>(R.id.btnCancel)
+        btnCancel.setOnClickListener { handleCancel() }
+        onBackPressedDispatcher.addCallback(this) { handleCancel() }
         // Adapters de spinners con los arrays
         spSpecies.adapter = ArrayAdapter.createFromResource(
             this, R.array.species_values, android.R.layout.simple_spinner_dropdown_item
@@ -74,4 +79,31 @@ class PetCreateActivity: ComponentActivity() {
         }
     }
     private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
+    private fun handleCancel() {
+        if (hasUnsavedChanges()) {
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.discard_changes_title))
+                .setMessage(getString(R.string.discard_changes_msg))
+                .setPositiveButton(getString(R.string.yes)) { _, _ -> finish() }  // vuelve al Menú
+                .setNegativeButton(getString(R.string.no), null)
+                .show()
+        } else {
+            finish()
+        }
+    }
+
+    private fun hasUnsavedChanges(): Boolean {
+        val etName = findViewById<EditText>(R.id.etName)
+        val etBreed = findViewById<EditText>(R.id.etBreed)
+        val etWeight = findViewById<EditText>(R.id.etWeight)
+        val etBirth = findViewById<EditText>(R.id.etBirth)
+
+        // Consideramos “cambios” si hay texto en cualquier campo.
+        // (Ignoramos spinners para evitar falsos positivos por valores por defecto)
+        return etName.text.isNotBlank()
+                || etBreed.text.isNotBlank()
+                || etWeight.text.isNotBlank()
+                || etBirth.text.isNotBlank()
+    }
 }

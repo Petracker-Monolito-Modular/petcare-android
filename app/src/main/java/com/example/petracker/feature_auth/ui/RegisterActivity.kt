@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.lifecycleScope
 import com.example.petracker.R
 import com.example.petracker.core.network.RetrofitClient
@@ -17,6 +18,7 @@ import com.example.petracker.feature_menu.ui.MenuActivity
 import com.example.petracker.feature_pets.ui.PetsListActivity
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import com.google.android.material.appbar.MaterialToolbar
 
 class RegisterActivity: ComponentActivity() {
     private lateinit var vm: RegisterViewModel
@@ -30,6 +32,10 @@ class RegisterActivity: ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        val tb = findViewById<MaterialToolbar>(R.id.toolbar)
+        tb.title = "Crear cuenta"
+        tb.navigationIcon = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back_24)
+        tb.setNavigationOnClickListener { finish() }
         val tokenStore = TokenStore(this)
         val retrofit = RetrofitClient.create(tokenStore)
         val repo = AuthRepository(retrofit.create(AuthApi::class.java), tokenStore)

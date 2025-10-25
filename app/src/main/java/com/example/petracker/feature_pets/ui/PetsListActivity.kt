@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.lifecycleScope
 import com.example.petracker.R
 import com.example.petracker.common.model.Pet
@@ -16,7 +17,7 @@ import com.example.petracker.feature_pets.data.PetsApi
 import com.example.petracker.feature_pets.data.PetsRepository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-
+import com.google.android.material.appbar.MaterialToolbar
 class PetsListActivity : ComponentActivity() {
     private lateinit var vm: PetsViewModel
     private lateinit var list: ListView
@@ -26,6 +27,12 @@ class PetsListActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pets_list)
+
+        val tb = findViewById<MaterialToolbar>(R.id.toolbar)
+        tb.title = "Mis mascotas" // o el que toque
+        tb.navigationIcon = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back_24)
+        tb.setNavigationOnClickListener { finish() }
+
 
         list = findViewById(R.id.listPets)
 

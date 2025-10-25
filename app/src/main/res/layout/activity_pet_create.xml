@@ -1,15 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp" android:layout_width="match_parent" android:layout_height="match_parent">
-    <LinearLayout android:orientation="vertical"
-        android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <EditText android:id="@+id/etName" android:hint="Nombre" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <Spinner android:id="@+id/spSpecies" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <Spinner android:id="@+id/spSex" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/etBreed" android:hint="Raza (opcional)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/etWeight" android:hint="Peso kg (2.07)" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/etBirth" android:hint="Fecha nacimiento (YYYY-MM-DD)" android:focusable="false" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <Button android:id="@+id/btnSave" android:text="Guardar" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"/>
+        <EditText
+            android:id="@+id/etName"
+            android:hint="Nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spSpecies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spSex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etBreed"
+            android:hint="Raza (opcional)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etWeight"
+            android:hint="Peso kg (2.07)"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etBirth"
+            android:hint="Fecha nacimiento (YYYY-MM-DD)"
+            android:focusable="false"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Fila de botones: Cancelar / Guardar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/cancel" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/save" />
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
