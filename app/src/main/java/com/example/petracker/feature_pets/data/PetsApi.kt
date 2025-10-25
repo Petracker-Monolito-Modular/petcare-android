@@ -18,4 +18,10 @@ interface PetsApi {
     suspend fun list(@Query("limit") limit: Int = 50, @Query("offset") offset: Int = 0): PetsPage
     @POST("pets")
     suspend fun create(@Body body: PetCreate): Pet
+
+    @PUT("pets/{id}")
+    suspend fun update(@Path("id") id: String, @Body body: PetCreate): Pet
+
+    @DELETE("pets/{id}")
+    suspend fun delete(@Path("id") id: String)
 }
