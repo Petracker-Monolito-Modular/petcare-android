@@ -14,31 +14,28 @@ class RegisterViewModel(private val repo: AuthRepository): ViewModel() {
     val state: StateFlow<UiState<Unit>> = _state
 
     fun register(name: String, email: String, pass: String, confirm: String) {
-        // Validaciones rápidas en UI layer
-        val err = validate(name, email, pass, confirm)
-        if (err != null) {
-            _state.value = UiState.Error(err)
-            return
-        }
 
         _state.value = UiState.Loading
         viewModelScope.launch {
             val result = repo.registerAndLogin(name, email, pass)
             _state.value = result.fold(
                 onSuccess = { UiState.Success(Unit) },
-                onFailure = {
-                    val msg = it.message ?: "No se pudo registrar"
-                    UiState.Error(msg)
-                }
+                onFailure = { UiState.Error(mapToUserMessage(it)) }
             )
         }
     }
 
-    private fun validate(name: String, email: String, pass: String, confirm: String): String? {
-        if (name.isBlank()) return "Ingresa tu nombre"
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) return "Email inválido"
-        if (pass.length < 8) return "La contraseña debe tener al menos 8 caracteres"
-        if (pass != confirm) return "Las contraseñas no coinciden"
-        return null
+    private fun mapToUserMessage(t: Throwable): String {
+        return when (t) {
+            is retrofit2.HttpException -> when (t.code()) {
+                409 -> "Ese correo ya está registrado"
+                400, 422 -> "Datos inválidos. Revisa los campos"
+                401 -> "Credenciales inválidas"
+                500 -> "Error del servidor. Inténtalo más tarde"
+                else -> "Error (${t.code()}). Inténtalo de nuevo"
+            }
+            is java.io.IOException -> "Sin conexión. Revisa tu internet"
+            else -> t.message ?: "Ocurrió un error inesperado"
+        }
     }
 }
