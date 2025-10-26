@@ -28,6 +28,8 @@
             android:layout_width="180dp"
             android:layout_height="48dp"
             android:layout_weight="1"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:backgroundTint="@color/Green"
             android:text="Login"
             android:textSize="20sp"/>
@@ -37,6 +39,8 @@
             android:layout_width="180dp"
             android:layout_height="48dp"
             android:layout_weight="1"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:backgroundTint="@color/Green"
             android:text="Crear cuenta"
             android:textSize="20sp" />
@@ -69,7 +73,8 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:paddingBottom="6dp"
-            android:textColorHint="@color/et_text_color"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="14sp" />
 
         <Space
@@ -86,8 +91,8 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:paddingBottom="6dp"
-            android:textColor="@color/et_text_color"
-            android:textColorHint="@color/et_hint_color"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="14sp" />
     </LinearLayout>
 

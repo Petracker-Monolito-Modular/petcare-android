@@ -29,6 +29,8 @@
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Nombre" />
 
             <Space
@@ -52,6 +54,8 @@
                 android:id="@+id/etBreed"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Raza (opcional)" />
 
             <Space
@@ -63,6 +67,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:hint="Peso kg (2.07)"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:inputType="numberDecimal" />
 
             <EditText
@@ -71,6 +77,8 @@
                 android:layout_height="48dp"
                 android:clickable="true"
                 android:focusable="false"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
                 android:hint="Fecha nacimiento (YYYY-MM-DD)" />
 
             <!-- Fila de botones: Cancelar / Guardar cambios -->
