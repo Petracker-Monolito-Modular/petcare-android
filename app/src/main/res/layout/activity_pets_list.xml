@@ -16,7 +16,7 @@
         android:background="@drawable/gradient_background_invertido">
 
         <LinearLayout
-            android:layout_width="205dp"
+            android:layout_width="295dp"
             android:layout_height="420dp"
             android:layout_marginStart="187dp"
             android:layout_marginTop="29dp"
@@ -33,7 +33,7 @@
 
             <ListView
                 android:id="@+id/listPets"
-                android:layout_width="185dp"
+                android:layout_width="265dp"
                 android:layout_height="389dp"
                 android:layout_margin="16dp"
                 android:background="#FFFFFF" />

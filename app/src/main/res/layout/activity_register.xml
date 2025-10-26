@@ -31,6 +31,8 @@
                 android:layout_height="48dp"
                 android:hint="Nombre"
                 android:textSize="25sp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:inputType="textPersonName" />
 
             <Space
@@ -43,6 +45,8 @@
                 android:layout_height="48dp"
                 android:hint="Email"
                 android:textSize="25sp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:inputType="textEmailAddress" />
 
             <Space
@@ -55,6 +59,8 @@
                 android:layout_height="48dp"
                 android:hint="Contraseña"
                 android:textSize="25sp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:inputType="textPassword" />
 
             <Space
@@ -67,6 +73,8 @@
                 android:layout_height="48dp"
                 android:textSize="25sp"
                 android:hint="Confirmar contraseña"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:inputType="textPassword" />
 
             <Button
