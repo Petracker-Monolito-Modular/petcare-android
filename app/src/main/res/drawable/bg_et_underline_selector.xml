@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Error (si lo aplicas por código) -->
+    <item android:state_active="true" android:drawable="@drawable/bg_et_underline_error"/>
+    <!-- Focus -->
+    <item android:state_focused="true" android:drawable="@drawable/bg_et_underline_focus"/>
+    <!-- Default -->
+    <item android:drawable="@drawable/bg_et_underline_idle"/>
+</selector>
