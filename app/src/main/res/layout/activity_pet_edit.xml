@@ -1,81 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".feature_pets.ui.PetEditActivity">
 
 
-    <include layout="@layout/toolbar_simple"/>
+    <include layout="@layout/toolbar_simple" />
 
     <ScrollView
-        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/Green"
+        android:padding="19dp">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_background"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/etName"
-                android:hint="Nombre"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="48dp"
+                android:hint="Nombre" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <Spinner
                 android:id="@+id/spSpecies"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="48dp" />
 
             <Spinner
                 android:id="@+id/spSex"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="48dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/etBreed"
-                android:hint="Raza (opcional)"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="48dp"
+                android:hint="Raza (opcional)" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/etWeight"
-                android:hint="Peso kg (2.07)"
-                android:inputType="numberDecimal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="48dp"
+                android:hint="Peso kg (2.07)"
+                android:inputType="numberDecimal" />
 
             <EditText
                 android:id="@+id/etBirth"
-                android:hint="Fecha nacimiento (YYYY-MM-DD)"
-                android:focusable="false"
-                android:clickable="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="Fecha nacimiento (YYYY-MM-DD)" />
 
             <!-- Fila de botones: Cancelar / Guardar cambios -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnCancel"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:text="@string/cancel" />
+                    android:backgroundTint="@color/Green"
+                    android:text="@string/cancel"
+                    android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/btnSave"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/Green"
+                    android:textSize="20sp"
                     android:text="@string/save_changes" />
             </LinearLayout>
 
