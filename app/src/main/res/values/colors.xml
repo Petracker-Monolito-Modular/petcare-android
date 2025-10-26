@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="Yellow">#FFE500</color>
     <color name="Green">#2E2E2E</color>
+    <color name="underline_idle">#66FFFFFF</color>   <!-- sub-bar reposo -->
+    <color name="underline_focus">#FFCC00</color>   <!-- sub-bar foco (ej. amarillo/acento) -->
+    <color name="underline_error">#D32F2F</color>
 </resources>
