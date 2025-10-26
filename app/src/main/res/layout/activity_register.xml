@@ -75,7 +75,7 @@
                 android:layout_height="48dp"
                 android:layout_marginLeft="110dp"
                 android:layout_marginTop="55dp"
-                android:backgroundTint="@color/Green"
+                android:backgroundTint="@color/cardview_dark_background"
                 android:text="Crear cuenta"
                 android:textSize="20sp" />
         </LinearLayout>

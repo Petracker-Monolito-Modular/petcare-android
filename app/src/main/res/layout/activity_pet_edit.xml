@@ -85,7 +85,7 @@
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/Green"
+                    android:backgroundTint="@color/cardview_dark_background"
                     android:text="@string/cancel"
                     android:textSize="20sp" />
 
@@ -94,7 +94,7 @@
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/Green"
+                    android:backgroundTint="@color/cardview_dark_background"
                     android:textSize="20sp"
                     android:text="@string/save_changes" />
             </LinearLayout>
